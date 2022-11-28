@@ -25,7 +25,7 @@ Parameters:
   KeyName:
     Description: Name of an EC2 KeyPair to enable SSH access to the instance.
     Type: String
-    Default: FTPEC2KeyPair
+    Default: FTPEC2Key
     ConstraintDescription: must be the name of an existing EC2 KeyPair.
 
   S3BucketName:
@@ -169,7 +169,7 @@ Resources:
           DeviceIndex: 0
           SubnetId: !Ref PublicSubnet
       InstanceType: !Ref InstanceType
-      KeyName: !Ref KeyName
+      KeyName: !Sub '${KeyName}'
       IamInstanceProfile: !Ref S3FSEC2InstanceProfile
       ImageId: ami-0606971ce93115519
       UserData:
