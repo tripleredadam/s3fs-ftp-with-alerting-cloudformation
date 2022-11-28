@@ -206,6 +206,7 @@ Resources:
       - PublicRoute
       - S3BucketVideos
       - S3FSRole
+      - EC2KeyPair
     DeletionPolicy: Delete
 
   S3FSEC2InstanceProfile:
