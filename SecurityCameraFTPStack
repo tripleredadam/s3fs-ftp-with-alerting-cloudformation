@@ -24,7 +24,7 @@ Parameters:
 
   KeyName:
     Description: Name of an EC2 KeyPair to enable SSH access to the instance.
-    Type: 'AWS::EC2::KeyPair::KeyName'
+    Type: String
     Default: FTPEC2KeyPair
     ConstraintDescription: must be the name of an existing EC2 KeyPair.
 
@@ -59,7 +59,7 @@ Resources:
   SESIdentity:
     Type: AWS::SES::EmailIdentity
     Properties: 
-      EmailIdentify: !Sub '${AlertEmailAddress}'
+      EmailIdentity: !Sub '${AlertEmailAddress}'
     DeletionPolicy: Delete
 
   InternetGateway:
@@ -515,7 +515,7 @@ Resources:
       LifecycleConfiguration:
         Rules:
           - Status: Enabled
-            ExpirationInDays: 30
+            ExpirationInDays: 21
       Tags:
         - Key: Name
           Value: !Sub '${TagName} S3 Video Bucket'
