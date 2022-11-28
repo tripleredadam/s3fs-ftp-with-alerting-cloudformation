@@ -25,7 +25,7 @@ Parameters:
   KeyName:
     Description: Name of an EC2 KeyPair to enable SSH access to the instance.
     Type: 'AWS::EC2::KeyPair::KeyName'
-    Default: VPCSSH-2022
+    Default: FTPEC2KeyPair
     ConstraintDescription: must be the name of an existing EC2 KeyPair.
 
   S3BucketName:
@@ -148,6 +148,12 @@ Resources:
       AvailabilityZone: !Select 
         - '0'
         - !Ref AvailabilityZones
+    DeletionPolicy: Delete
+
+  EC2KeyPair:
+    Type: 'AWS::EC2::KeyPair'
+    Properties:
+      KeyName: !Sub '${KeyName}'
     DeletionPolicy: Delete
 
   FTPServerInstance:
