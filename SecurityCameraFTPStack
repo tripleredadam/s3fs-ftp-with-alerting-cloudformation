@@ -195,12 +195,12 @@ Resources:
           /usr/local/bin/s3fs ${S3BucketName} -o \
           use_cache=/tmp,iam_role="S3FSRole-${AWS::Region}-${TagName}",allow_other \
           /home/${FTPUserName}/ftp/files -o \
-          url="https://s3-${AWS::Region}.amazonaws.com" -o nonempty
+          url="https://s3-${AWS::Region}.amazonaws.com" -o nonempty -o uid=1001 -o gid=1001
 
           { cat; echo "@reboot /usr/local/bin/s3fs ${S3BucketName} -o \
           use_cache=/tmp,iam_role=\"S3FSRole-${AWS::Region}-${TagName}\",allow_other \
           /home/${FTPUserName}/ftp/files -o \
-          url=\"https://s3-${AWS::Region}.amazonaws.com\" -o nonempty"; } | \
+          url=\"https://s3-${AWS::Region}.amazonaws.com\" -o nonempty -o uid=1001 -o gid=1001"; } | \
           crontab -
     DependsOn:
       - PublicRoute
